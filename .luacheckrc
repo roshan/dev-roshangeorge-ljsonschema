@@ -23,8 +23,8 @@ ignore = {
 
 
 exclude_files = {
---    "spec/fixtures/invalid-module.lua",
---    "spec-old-api/fixtures/invalid-module.lua",
+    "openresty-*/**/*.lua",
+    "luarocks-*/**/*.lua",
 }
 
 

@@ -1,8 +1,39 @@
-#!/usr/bin/env resty
+#!/usr/bin/env bash
 
-if ngx ~= nil then
-  ngx.exit = function() end
-end
+RESTY=$(which resty)
+if [[ "$RESTY" == "" ]]; then
+  echo "[ERROR] Could not locate 'resty' binary, make sure it is in your path"
+  exit 1
+fi
+LUA=$(which lua)
+if [[ "$LUA" == "" ]]; then
+  LUA=$(which luajit)
+fi
+if [[ "$LUA" == "" ]]; then
+  echo "[ERROR] Could not locate 'lua' or 'luajit' binary, make sure it is in your path"
+  exit 1
+fi
 
--- Busted command-line runner
-require 'busted.runner'({ standalone = false })
+echo [INFO] running tests using 'resty'
+$RESTY -e 'ngx.exit=function()end; setmetatable(_G, nil); require "busted.runner"({ standalone = false })'
+RESTY_RESULT=$?
+
+echo [INFO] running tests using 'lua'/'luajit'
+$LUA -e 'require "busted.runner"({ standalone = false })'
+LUA_RESULT=$?
+
+EXIT_CODE=0
+if [[ ! "$RESTY_RESULT" == "0" ]]; then
+  echo [ERROR] OpenResty run failed with exitcode $RESTY_RESULT
+  EXIT_CODE=$RESTY_RESULT
+else
+  echo [INFO] OpenResty success!
+fi
+if [[ ! "$LUA_RESULT" == "0" ]]; then
+  echo [ERROR] Lua run failed with exitcode $LUA_RESULT
+  EXIT_CODE=$LUA_RESULT
+else
+  echo [INFO] Lua success!
+fi
+
+exit $EXIT_CODE

@@ -7,15 +7,25 @@ local jsonschema = require 'resty.ljsonschema'
 
 -- the full support of JSON schema in Lua is difficult to achieve in some cases
 -- so some tests from the official test suite fail, skip them.
-local blacklist = {
-  -- edge cases, not supported features
-  ['minLength validation'] = {
-    ['one supplementary Unicode code point is not long enough'] = true, -- unicode handling
-  },
-  ['maxLength validation'] = {
-    ['two supplementary Unicode code points is long enough'] = true, -- unicode handling
-  },
-}
+local blacklist do
+  blacklist = {
+    -- edge cases, not supported features
+    ['minLength validation'] = {
+      ['one supplementary Unicode code point is not long enough'] = true, -- unicode handling
+    },
+    ['maxLength validation'] = {
+      ['two supplementary Unicode code points is long enough'] = true, -- unicode handling
+    },
+  }
+
+  if not ngx then
+    -- additional blacklisted for Lua/LuaJIT specifically
+    blacklist['regexes are not anchored by default and are case sensitive'] = {
+      ['recognized members are accounted for'] = true -- regex pattern not supported by plain Lua string.find
+    }
+  end
+end
+
 
 local supported = {
 --  'spec/extra/sanity.json',
@@ -58,8 +68,8 @@ local supported = {
   'spec/JSON-Schema-Test-Suite/tests/draft4/definitions.json',
   'spec/extra/ref.json',
   -- Lua extensions
---  'spec/extra/table.json',
---  'spec/extra/function.lua',
+  'spec/extra/table.json',
+  'spec/extra/function.lua',
 }
 
 local function readjson(path)
