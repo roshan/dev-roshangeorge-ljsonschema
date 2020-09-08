@@ -1,8 +1,8 @@
-package = "lua-resty-ljsonschema"
-version = "scm-1"
+package = "dev-roshangeorge-ljsonschema"
+version = "1.1.0-1"
 source = {
-   url = "git+file:///home/george/code/lua-resty-ljsonschema",
-   branch = "safegraph",
+   url = "git://github.com/roshan/lua-resty-ljsonschema",
+   tag = "aggregate_validators",
 }
 description = {
    summary = "JSON Schema data validator",
@@ -10,8 +10,9 @@ description = {
 This module is  data validator the implements JSON Schema draft 4.
 Given an JSON schema, it will generate a validator function that can be used
 to validate any kind of data (not limited to JSON).
+Forked from https://github.com/Tieske/lua-resty-ljsonschema
 ]],
-   homepage = "https://github.com/Tieske/lua-resty-ljsonschema",
+   homepage = "https://github.com/roshan/lua-resty-ljsonschema",
    license = "MIT/X11"
 }
 dependencies = {
