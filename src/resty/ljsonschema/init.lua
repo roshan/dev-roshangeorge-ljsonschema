@@ -11,6 +11,7 @@ local tconcat = table.concat
 local insert = table.insert
 local DEBUG = os and os.getenv and os.getenv('DEBUG') == '1'
 
+
 local default_null = nil        -- default null token
 local default_array_mt = nil    -- default array_mt metatable
 local default_match_pattern     -- default reg-ex engine to use
@@ -877,7 +878,20 @@ generate_validator = function(ctx, schema)
       ctx:stmt(sformat('  %s(%s)', validator, ctx:param(1)), op)
     end
     ctx:stmt(') then')
-    ctx:stmt('  return false, "object matches none of the alternatives"')
+    ctx:stmt('  local unmatched = ""')
+    ctx:stmt('  do')
+    for i, subschema in ipairs(schema.anyOf) do
+      ctx:stmt(        '  local was_matched')
+      ctx:stmt(        '  local error_message')
+      local validator = ctx:validator({ 'anyOf', tostring(i-1) }, subschema)
+      ctx:stmt(sformat('  was_matched, error_message = %s(%s)', validator, ctx:param(1)))
+      ctx:stmt(        '  if not was_matched then')
+      ctx:stmt(        '    unmatched = unmatched .. \'\\n\\t - \' .. error_message')
+      ctx:stmt(        '  end')
+    end
+    ctx:stmt('  end')
+    ctx:stmt(sformat('  return false, %s("object needs one of the following rectifications: %%s", unmatched)',
+                     ctx:libfunc('string.format')))
     ctx:stmt('end')
   end
 
