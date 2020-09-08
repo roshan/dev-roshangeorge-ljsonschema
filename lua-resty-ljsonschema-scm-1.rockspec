@@ -1,8 +1,8 @@
 package = "lua-resty-ljsonschema"
 version = "scm-1"
 source = {
-   url = "git://github.com/Tieske/lua-resty-ljsonschema.git",
-   branch = "master",
+   url = "git://github.com/roshan/lua-resty-ljsonschema.git",
+   branch = "aggregate_validators",
 }
 description = {
    summary = "JSON Schema data validator",
