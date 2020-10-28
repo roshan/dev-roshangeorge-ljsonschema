@@ -26,7 +26,8 @@
             {
                 "description": "missing dependency",
                 "data": {"bar": 2},
-                "valid": false
+                "valid": false,
+                "error": "property foo is required when bar is set"
             },
             {
                 "description": "ignores non-objects",
@@ -64,19 +65,22 @@
             {
                 "description": "wrong type",
                 "data": {"foo": "quux", "bar": 2},
-                "valid": false
+                "valid": false,
+                "error": "failed to validate dependent schema for bar: property foo validation failed: wrong type: expected integer, got string"
             },
             {
                 "description": "wrong type other",
                 "data": {"foo": 2, "bar": "quux"},
-                "valid": false
+                "valid": false,
+                "error": "property bar validation failed: wrong type: expected integer, got string"
             },
             {
                 "description": "wrong type both",
                 "data": {"foo": "quux", "bar": "quux"},
-                "valid": false
+                "valid": false,
+                "error": "property bar validation failed: wrong type: expected integer, got string"
             }
         ]
     }
 
-] 
+]

@@ -57,12 +57,14 @@
       {
         "description": "correct type but invalid properties is invalid",
         "data": {"foo": "bar"},
-        "valid": false
+        "valid": false,
+        "error": "property foo validation failed: wrong type: expected integer, got string"
       },
       {
         "description": "incorrect type is invalid",
         "data": ["foo", 42],
-        "valid": false
+        "valid": false,
+        "error": "wrong type: expected object, got table"
       }
     ]
   },
@@ -82,9 +84,9 @@
         "valid": true
       },
       {
-        "description": "ignores non-objects (empty array version) - AGAINST SPEC",
+        "description": "ignores non-objects (empty array version) - AGAINST SPEC ???",
         "data": [],
-        "valid": false
+        "valid": true
       }
     ]
   },

@@ -9,9 +9,10 @@
         "valid": true
       },
       {
-        "description": "an empty object is an array - AGAINST SPEC",
+        "description": "an empty object is not an array",
         "data": {},
-        "valid": true
+        "valid": false,
+        "error": "wrong type: expected array, got table"
       },
       {
         "description": "a non-empty array is an array",
@@ -21,7 +22,8 @@
       {
         "description": "a non-empty object is not an array",
         "data": {"answer": 42},
-        "valid": false
+        "valid": false,
+        "error": "wrong type: expected array, got table"
       }
     ]
   },
@@ -30,9 +32,10 @@
     "schema": {"type": "object"},
     "tests": [
       {
-        "description": "an empty array is an object - AGAINST SPEC",
+        "description": "an empty array is not an object",
         "data": [],
-        "valid": true
+        "valid": false,
+        "error": "wrong type: expected object, got table"
       },
       {
         "description": "an empty object is an object",
@@ -42,7 +45,8 @@
       {
         "description": "a non-empty array is not an object",
         "data": ["foo", "bar"],
-        "valid": false
+        "valid": false,
+        "error": "wrong type: expected object, got table"
       },
       {
         "description": "a non-empty object is an object",
@@ -54,21 +58,22 @@
   {
     "description": "confusion with properties",
     "schema": {
-      "properties": { 
+      "properties": {
         "foo": {"type": "integer"}
       },
       "required": ["foo"]
     },
     "tests": [
       {
-        "description": "empty array validates against empty property set",
+        "description": "empty array validates against empty property set - AGAINST SPEC ???",
         "data": [],
-        "valid": false
+        "valid": true
       },
       {
         "description": "empty object validates against empty property set",
         "data": {},
-        "valid": false
+        "valid": false,
+        "error": "property foo is required"
       }
     ]
   }

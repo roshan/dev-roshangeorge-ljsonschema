@@ -26,27 +26,32 @@
             {
                 "description": "a invalid day in date-time string",
                 "data": "1990-02-31T15:59:60.123-08:00",
-                "valid": false
+                "valid": false,
+                "error": "expected valid \"date-time\", got \"1990-02-31T15:59:60.123-08:00\""
             },
             {
                 "description": "an invalid offset in date-time string",
                 "data": "1990-12-31T15:59:60-24:00",
-                "valid": false
+                "valid": false,
+                "error": "expected valid \"date-time\", got \"1990-12-31T15:59:60-24:00\""
             },
             {
                 "description": "an invalid time separator in date-time string",
                 "data": "1990-12-31A15:59:60-21:00",
-                "valid": false
+                "valid": false,
+                "error": "expected valid \"date-time\", got \"1990-12-31A15:59:60-21:00\""
             },
             {
                 "description": "an invalid date-time string",
                 "data": "06/19/1963 08:30:06 PST",
-                "valid": false
+                "valid": false,
+                "error": "expected valid \"date-time\", got \"06/19/1963 08:30:06 PST\""
             },
             {
                 "description": "an invalid date-time string where the date and time are valid but string is not r-trimmed",
                 "data": "1963-06-19T08:30:06.283185Z ",
-                "valid": false
+                "valid": false,
+                "error": "expected valid \"date-time\", got \"1963-06-19T08:30:06.283185Z \""
             },
             {
                 "description": "case-insensitive T and Z",
@@ -56,37 +61,44 @@
             {
                 "description": "only RFC3339 not all of ISO 8601 are valid",
                 "data": "2013-350T01:01:01",
-                "valid": false
+                "valid": false,
+                "error": "expected valid \"date-time\", got \"2013-350T01:01:01\""
             },
             {
                 "description": "invalid start sequence",
                 "data": "abc2020-08-07T08:30:00Z",
-                "valid": false
+                "valid": false,
+                "error": "expected valid \"date-time\", got \"abc2020-08-07T08:30:00Z\""
             },
             {
                 "description": "invalid end sequence",
                 "data": "2020-08-07T08:30:00Zcba",
-                "valid": false
+                "valid": false,
+                "error": "expected valid \"date-time\", got \"2020-08-07T08:30:00Zcba\""
             },
             {
                 "description": "invalid start and end sequence",
                 "data": "abc2020-08-07T08:30:00Zcba",
-                "valid": false
+                "valid": false,
+                "error": "expected valid \"date-time\", got \"abc2020-08-07T08:30:00Zcba\""
             },
             {
                 "description": "invalid random garbage data",
                 "data": "abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_",
-                "valid": false
+                "valid": false,
+                "error": "expected valid \"date-time\", got \"abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_\""
             },
             {
                 "description": "a valid time string is invalid as a date-time",
                 "data": "08:30:06.283185Z",
-                "valid": false
+                "valid": false,
+                "error": "expected valid \"date-time\", got \"08:30:06.283185Z\""
             },
             {
                 "description": "a valid date string is invalid as a date-time",
                 "data": "1963-06-19",
-                "valid": false
+                "valid": false,
+                "error": "expected valid \"date-time\", got \"1963-06-19\""
             }
         ]
     }

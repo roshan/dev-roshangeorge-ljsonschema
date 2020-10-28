@@ -16,7 +16,8 @@
             {
                 "description": "mismatch",
                 "data": {"bar": true},
-                "valid": false
+                "valid": false,
+                "error": "property bar validation failed: wrong type: expected integer, got boolean"
             }
         ]
     },
@@ -45,7 +46,8 @@
             {
                 "description": "mismatch array",
                 "data": [1, "foo"],
-                "valid": false
+                "valid": false,
+                "error": "failed to validate item 1: wrong type: expected string, got number"
             }
         ]
     }

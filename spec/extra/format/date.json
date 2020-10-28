@@ -16,52 +16,62 @@
             {
                 "description": "a invalid leap year date",
                 "data": "2019-02-29",
-                "valid": false
+                "valid": false,
+                "error": "expected valid \"date\", got \"2019-02-29\""
             },
             {
                 "description": "a invalid February date",
                 "data": "2019-02-30",
-                "valid": false
+                "valid": false,
+                "error": "expected valid \"date\", got \"2019-02-30\""
             },
             {
                 "description": "an invalid date string",
                 "data": "06/19/1963",
-                "valid": false
+                "valid": false,
+                "error": "expected valid \"date\", got \"06/19/1963\""
             },
             {
                 "description": "an invalid date string where the date is valid but string is not r-trimmed",
                 "data": "1963-06-19 ",
-                "valid": false
+                "valid": false,
+                "error": "expected valid \"date\", got \"1963-06-19 \""
             },
             {
                 "description": "only RFC3339 not all of ISO 8601 are valid",
                 "data": "2013-350",
-                "valid": false
+                "valid": false,
+                "error": "expected valid \"date\", got \"2013-350\""
             },
             {
                 "description": "invalid start sequence",
                 "data": "abc2020-08-07",
-                "valid": false
+                "valid": false,
+                "error": "expected valid \"date\", got \"abc2020-08-07\""
             },
             {
                 "description": "invalid end sequence",
                 "data": "2020-08-07cba",
-                "valid": false
+                "valid": false,
+                "error": "expected valid \"date\", got \"2020-08-07cba\""
             },
             {
                 "description": "invalid start and end sequence",
                 "data": "abc2020-08-07cba",
-                "valid": false
+                "valid": false,
+                "error": "expected valid \"date\", got \"abc2020-08-07cba\""
             },
             {
                 "description": "invalid random garbage data",
                 "data": "abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_",
-                "valid": false
+                "valid": false,
+                "error": "expected valid \"date\", got \"abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_\""
             },
             {
                 "description": "a valid time string is invalid as a date",
                 "data": "08:30:06.283185Z",
-                "valid": false
+                "valid": false,
+                "error": "expected valid \"date\", got \"08:30:06.283185Z\""
             }
         ]
     }

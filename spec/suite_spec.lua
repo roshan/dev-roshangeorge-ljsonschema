@@ -28,8 +28,8 @@ end
 
 
 local supported = {
---  'spec/extra/sanity.json',
---  'spec/extra/empty.json',
+  'spec/extra/sanity.json',
+  'spec/extra/empty.json',
   'spec/JSON-Schema-Test-Suite/tests/draft4/type.json',
   -- objects
   'spec/JSON-Schema-Test-Suite/tests/draft4/properties.json',
@@ -139,6 +139,9 @@ describe("[JSON schema Draft 4]", function()
                   assert.has.no.error(function()
                     result, err = validator(case.data)
                   end)
+                  if case.error then
+                    assert.equal(case.error, err)
+                  end
                   assert.has.error(function()
                     assert(result, err)
                   end)
