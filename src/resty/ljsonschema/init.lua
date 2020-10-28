@@ -727,6 +727,9 @@ generate_validator = function(ctx, schema)
       elseif schema.format == "date-time" then
         local split_pattern = "^(.+)[tT](.+)$"
         ctx:stmt(sformat('  local date_value, time_value = %s:match(%q)', ctx:param(1), split_pattern))
+        ctx:stmt(        '  if not date_value then')
+        ctx:stmt(sformat('    return false, %s([[expected valid date-time value, got %%q]], %s)', ctx:libfunc('string.format'), ctx:param(1)))
+        ctx:stmt(        '  end')
       end
       if schema.format == "date" or schema.format == "date-time" then
         local date_pattern = "^(%d%d%d%d)-(%d%d)-(%d%d)$"

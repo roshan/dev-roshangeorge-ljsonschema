@@ -62,6 +62,11 @@
                 "description": "invalid random garbage data",
                 "data": "abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_",
                 "valid": false
+            },
+            {
+                "description": "a valid date string is invalid as a time",
+                "data": "1963-06-19",
+                "valid": false
             }
         ]
     }

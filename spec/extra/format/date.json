@@ -57,6 +57,11 @@
                 "description": "invalid random garbage data",
                 "data": "abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_",
                 "valid": false
+            },
+            {
+                "description": "a valid time string is invalid as a date",
+                "data": "08:30:06.283185Z",
+                "valid": false
             }
         ]
     }
