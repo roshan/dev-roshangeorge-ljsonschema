@@ -135,8 +135,12 @@ describe("[JSON schema Draft 4]", function()
                     assert(validator(case.data))
                   end)
                 else
+                  local result, err
+                  assert.has.no.error(function()
+                    result, err = validator(case.data)
+                  end)
                   assert.has.error(function()
-                    assert(validator(case.data))
+                    assert(result, err)
                   end)
                 end
               end) -- it
